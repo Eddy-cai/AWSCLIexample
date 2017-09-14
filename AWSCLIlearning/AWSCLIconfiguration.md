@@ -76,19 +76,21 @@ delete the key pair
 ## launch the EC2 instance in AWS CLI
 use this command:
 ```
-aws ec2 run-instances --image-id ami-30041c53 --count 1 --instance-type m4.4xlarge --key-name MyKeyPair --security-group-ids sg-8327f3e5 --subnet-id subnet-58d9722e
+aws ec2 run-instances --image-id ami-30041c53 --count 1 --instance-type m4.4xlarge --key-name MyKeyPair --security-group-ids sg-8327f3e5 --subnet-id subnet-58d9722e --associate-public-ip-address --user-data file://bootscripts
 ```
-Adding a Name Tag to Your Instance
+add a Name Tag to existing Instance
 
-`aws ec2 create-tags --resources i-xxxxxxxx --tags Key=Name,Value=eddy-python`
+`aws ec2 create-tags --resources i-0c4ecee903946d3ba --tags Key=Name,Value=eddy-python`
 
 display the instance:
+```
+aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"
+aws ec2 describe-instances --filters "Name=instance-type,Values=m4.4xlarge"
+```
 
-`aws ec2 describe-instances --filters "Name=image-id,Values=ami-x0123456,ami-y0123456,ami-z0123456"`
+terminate the instance
 
-terminating the instance
-
-`aws ec2 terminate-instances --instance-ids <i-xxxxxxx>`
+`aws ec2 terminate-instances --instance-ids i-092c78fae22f2470b`
 	
 
 	
